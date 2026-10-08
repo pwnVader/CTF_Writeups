@@ -1,4 +1,3 @@
-
 # Whoami-Labs Laboratorio SUID (Easy)
 
 ---
@@ -17,7 +16,7 @@ combinación me deja un shell root.
 Despliegue con `sudo bash startlab.sh suid.tar` → puertos mapeados al host:
 **2224→22 (SSH)** y **8083→8080 (HTTP)**.
 
-![[Pasted image 20261007191813.png]]
+![Captura](./Images/Pasted%20image%2020261007191813.png)
 
 ```bash
 nmap -p- --min-rate 2000 -T4 172.17.0.2
@@ -33,9 +32,9 @@ estática (`/var/www/html/index.html`) con material didáctico sobre SUID.
 El HTML contiene texto con la clase `hidden`, cuyo color (`#0a0a0f`) es idéntico
 al fondo: invisible en el navegador, trivial con `curl`:
 
-![[Pasted image 20261007191928.png]]
+![Captura](./Images/Pasted%20image%2020261007191928.png)
 
-![[Pasted image 20261007191957.png]]
+![Captura](./Images/Pasted%20image%2020261007191957.png)
 
 ```bash
 ssh student@172.17.0.2
@@ -61,25 +60,26 @@ No hay cron, no hay binarios propios, el único flag en todo el FS es
 `/root/flag.txt` (inaccesible como student). La web no tiene más rutas
 interesantes. El vector es 100% SUID.
 
-![[Pasted image 20261007192153.png]]
+![Captura](./Images/Pasted%20image%2020261007192153.png)
+
 
 ## 4. Escalada de privilegios
 
-![[Pasted image 20261007192325.png]]
+![Captura](./Images/Pasted%20image%2020261007192325.png)
 
-![[Pasted image 20261007192242.png]]
+![Captura](./Images/Pasted%20image%2020261007192242.png)
 
-![[Pasted image 20261007192403.png]]
+![Captura](./Images/Pasted%20image%2020261007192403.png)
 
 ## 5. Flag
 
-![[Pasted image 20261007192648.png]]
+![Captura](./Images/Pasted%20image%2020261007192648.png)
 
 ```
 R****7
 ```
 
-![[Pasted image 20261007192710.png]]
+![Captura](./Images/Pasted%20image%2020261007192710.png)
 ## 6. Mitigaciones
 
 - No dejar `SUID` en binarios que no lo necesitan: `chmod u-s /usr/bin/find /usr/bin/cp /usr/bin/mv`.
